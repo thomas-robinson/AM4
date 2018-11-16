@@ -15,7 +15,7 @@ include $(MK_TEMPLATE)
 
 SUBMAKEFLAGS = BUILDROOT=$(BUILDROOT) SRCROOT=$(SRCROOT) MK_TEMPLATE=$(MK_TEMPLATE) BLD_TYPE=$(BLD_TYPE)
 
-fms_cm4p12_warsaw.x: coupler/libcoupler.a ice_sis/libice_sis.a atmos_dyn/libatmos_dyn.a land_lad2/libland_lad2.a atmos_phys/libatmos_phys.a mom6/libmom6.a fms/libfms.a
+fms_cm4p12_warsaw.x: coupler/libcoupler.a ice_sis/libice_sis.a atmos_dyn/libatmos_dyn.a land_lad2/libland_lad2.a atmos_phys/libatmos_phys.a fms/libfms.a
 	$(LD) $^ $(LDFLAGS) -o $@ $(STATIC_LIBS)
 
 fms/libfms.a:  FORCE
@@ -27,17 +27,13 @@ atmos_phys/libatmos_phys.a: fms/libfms.a FORCE
 atmos_dyn/libatmos_dyn.a: atmos_phys/libatmos_phys.a fms/libfms.a FORCE
 	$(MAKE) $(SUBMAKEFLAGS) OPENMP=$(OPENMP) --directory=$(BUILDROOT)atmos_dyn $(@F)
 
-ice_sis/libice_sis.a: mom6/libmom6.a fms/libfms.a FORCE
+ice_sis/libice_sis.a: fms/libfms.a FORCE
 	$(MAKE) $(SUBMAKEFLAGS) OPENMP=$(OPENMP) --directory=$(BUILDROOT)ice_sis $(@F)
 
 land_lad2/libland_lad2.a: fms/libfms.a FORCE
 	$(MAKE) $(SUBMAKEFLAGS) OPENMP=$(OPENMP) --directory=$(BUILDROOT)land_lad2 $(@F)
 
-# MOM6 is currently unable to run with OpenMP enabled
-mom6/libmom6.a: fms/libfms.a FORCE
-	$(MAKE) $(SUBMAKEFLAGS) --directory=$(BUILDROOT)mom6 $(@F)
-
-coupler/libcoupler.a: atmos_dyn/libatmos_dyn.a ice_sis/libice_sis.a atmos_phys/libatmos_phys.a mom6/libmom6.a land_lad2/libland_lad2.a fms/libfms.a FORCE
+coupler/libcoupler.a: atmos_dyn/libatmos_dyn.a ice_sis/libice_sis.a atmos_phys/libatmos_phys.a land_lad2/libland_lad2.a fms/libfms.a FORCE
 	$(MAKE) $(SUBMAKEFLAGS) OPENMP=$(OPENMP) --directory=$(BUILDROOT)coupler $(@F)
 
 FORCE:
@@ -48,7 +44,6 @@ clean:
 	$(MAKE) --directory=$(BUILDROOT)atmos_dyn clean
 	$(MAKE) --directory=$(BUILDROOT)ice_sis clean
 	$(MAKE) --directory=$(BUILDROOT)land_lad2 clean
-	$(MAKE) --directory=$(BUILDROOT)mom6 clean
 	$(MAKE) --directory=$(BUILDROOT)coupler clean
 
 clean_all: clean
