@@ -15,7 +15,7 @@ include $(MK_TEMPLATE)
 
 SUBMAKEFLAGS = BUILDROOT=$(BUILDROOT) SRCROOT=$(SRCROOT) MK_TEMPLATE=$(MK_TEMPLATE) BLD_TYPE=$(BLD_TYPE)
 
-fms_cm4p12_warsaw.x: coupler/libcoupler.a ice_sis/libice_sis.a atmos_dyn/libatmos_dyn.a land_lad2/libland_lad2.a atmos_phys/libatmos_phys.a fms/libfms.a
+aquaplanet_warsaw.x: coupler/libcoupler.a ice_sis/libice_sis.a atmos_dyn/libatmos_dyn.a land_lad2/libland_lad2.a atmos_phys/libatmos_phys.a fms/libfms.a
 	$(LD) $^ $(LDFLAGS) -o $@ $(STATIC_LIBS)
 
 fms/libfms.a:  FORCE
