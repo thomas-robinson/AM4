@@ -8,9 +8,6 @@
 [submodule "src/shared"]
 	path = src/shared
 	url = https://github.com/NOAA-GFDL/FMS.git
-[submodule "land_null"]
-	path = land_null
-	url = https://github.com/NOAA-GFDL/land_null.git
 [submodule "src/land_null"]
 	path = src/land_null
 	url = https://github.com/NOAA-GFDL/land_null.git
