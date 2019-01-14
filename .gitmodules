@@ -1,10 +1,10 @@
 [submodule "src/MOM6"]
 	path = src/MOM6
 	url = https://github.com/NOAA-GFDL/MOM6.git
-[submodule "src/coupler"]
-	path = src/coupler
-	url = https://github.com/thomas-robinson/coupler.git
-	branch = 1-add-simple-coupler
+#[submodule "src/coupler"]
+#	path = src/coupler
+#	url = https://github.com/thomas-robinson/coupler.git
+#	branch = 1-add-simple-coupler
 [submodule "src/shared"]
 	path = src/shared
 	url = https://github.com/NOAA-GFDL/FMS.git
