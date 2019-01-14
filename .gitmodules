@@ -11,3 +11,9 @@
 [submodule "src/land_null"]
 	path = src/land_null
 	url = https://github.com/NOAA-GFDL/land_null.git
+[submodule "coupler"]
+	path = coupler
+	url = https://github.com/thomas-robinson/coupler.git
+[submodule "src/coupler"]
+	path = src/coupler
+	url = https://github.com/thomas-robinson/coupler.git
