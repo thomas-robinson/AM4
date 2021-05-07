@@ -14,15 +14,15 @@ Stage: build
  chmod 777 /opt/AM4/am4_xanadu_2021.01.x
 
 
-Bootstrap: docker
-From: intel/oneapi-runtime:ubuntu18.04
-Stage: final
+#Bootstrap: docker
+#From: intel/oneapi-runtime:ubuntu18.04
+#Stage: final
 
-%files from build
-/opt/hdf5
-/opt/netcdf-c
-/opt/netcdf-fortran
-/opt/AM4/am4_xanadu_2021.01.x
+#%files from build
+#/opt/hdf5
+#/opt/netcdf-c
+#/opt/netcdf-fortran
+#/opt/AM4/am4_xanadu_2021.01.x
 ## Add the AM4 executable to the path
 %environment
 PATH=/opt/AM4:/opt/netcdf-c/bin:/opt/netcdf-fortran/bin:${PATH}
